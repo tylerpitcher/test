@@ -33,7 +33,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/timg latest .
+        docker buildx build -t ${{ secrets.DOCKER_USERNAME }}/timg:latest .
 
     - name: Push Docker image
       run: |
