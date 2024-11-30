@@ -31,6 +31,11 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build Docker images for amd64 and arm64
-      run: |
-        docker buildx build --platform linux/amd64,linux/arm64 --push -t ${{ secrets.DOCKER_USERNAME }}/timg:latest .
+    - name: Build and Publish Image
+    run: |
+      COMMIT_HASH=$(echo ${{ github.sha }} | cut -c1-7)
+      docker buildx build \
+        --platform linux/amd64,linux/arm64 \
+        --push \
+        -t ${{ secrets.DOCKER_USERNAME }}/test:latest \
+        -t ${{ secrets.DOCKER_USERNAME }}/test:${COMMIT_HASH} .
