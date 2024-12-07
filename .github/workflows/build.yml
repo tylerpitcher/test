@@ -23,6 +23,8 @@ jobs:
     needs: build-and-publish
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     uses: tylerpitcher/workflows/.github/workflows/update.yaml@main
+    permissions:
+      contents: write
     with:
       yaml_file: manifests/test.yaml
       image_name: tylerpitcher/test
