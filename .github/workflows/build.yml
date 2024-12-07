@@ -1,20 +1,30 @@
-name: Build and Publish
+name: Build, Publish, and Deploy
 
 on:
   pull_request:
     branches:
-      - prod
+      - main
     types:
       - closed
   workflow_dispatch:
 
 jobs:
-  call:
+  build-and-publish:
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     uses: tylerpitcher/workflows/.github/workflows/build.yaml@main
     with:
       dockerfile_path: ./Dockerfile
-      image_name: test
+      image_name: portfolio-website
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+  update-manifest:
+    needs: build-and-publish
+    uses: tylerpitcher/workflows/.github/workflows/update-manifest.yaml@main
+    with:
+      yaml_file: manifests/portfolio-website.yaml
+      image_name: ${{ secrets.DOCKER_USERNAME }}/portfolio-website
+      image_version: ${{ github.sha }}
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
