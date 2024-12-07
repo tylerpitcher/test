@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-reusable-workflow:
+  call-build:
     uses: tylerpitcher/workflows/.github/workflows/build.yaml@main
     with:
       dockerfile_path: ./Dockerfile
