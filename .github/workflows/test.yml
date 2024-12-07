@@ -10,7 +10,7 @@ jobs:
   call-reusable-workflow:
     uses: tylerpitcher/workflows/.github/workflows/build.yaml@main
     with:
-      dockerfile_path: .
+      dockerfile_path: ./Dockerfile
       image_name: test
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
