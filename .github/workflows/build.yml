@@ -10,7 +10,7 @@ on:
 
 jobs:
   call:
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     uses: tylerpitcher/workflows/.github/workflows/build.yaml@main
     with:
       dockerfile_path: ./Dockerfile
