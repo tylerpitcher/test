@@ -1,5 +1,5 @@
 # test
-![Build Status](https://img.shields.io/github/actions/workflow/status/tylerpitcher/test/test.yml?branch=main&label=Build)
+![Build Status](https://img.shields.io/github/actions/workflow/status/tylerpitcher/test/build.yml?branch=main&label=Build)
 
 
 ## About
