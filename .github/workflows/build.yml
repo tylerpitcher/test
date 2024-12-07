@@ -3,7 +3,7 @@ name: Build, Publish, and Deploy
 on:
   pull_request:
     branches:
-      - main
+      - dev
     types:
       - closed
   workflow_dispatch:
@@ -21,10 +21,9 @@ jobs:
 
   update-manifest:
     needs: build-and-publish
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
     uses: tylerpitcher/workflows/.github/workflows/update.yaml@main
     with:
       yaml_file: manifests/test.yaml
       image_name: ${{ secrets.DOCKER_USERNAME }}/test
       image_version: ${{ github.sha }}
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
