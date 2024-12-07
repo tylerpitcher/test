@@ -14,17 +14,17 @@ jobs:
     uses: tylerpitcher/workflows/.github/workflows/build.yaml@main
     with:
       dockerfile_path: ./Dockerfile
-      image_name: portfolio-website
+      image_name: test
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   update-manifest:
     needs: build-and-publish
-    uses: tylerpitcher/workflows/.github/workflows/update-manifest.yaml@main
+    uses: tylerpitcher/workflows/.github/workflows/update.yaml@main
     with:
-      yaml_file: manifests/portfolio-website.yaml
-      image_name: ${{ secrets.DOCKER_USERNAME }}/portfolio-website
+      yaml_file: manifests/test.yaml
+      image_name: ${{ secrets.DOCKER_USERNAME }}/test
       image_version: ${{ github.sha }}
     secrets:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
