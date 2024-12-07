@@ -3,7 +3,7 @@ name: Build, Publish, and Deploy
 on:
   pull_request:
     branches:
-      - dev
+      - main
     types:
       - closed
   workflow_dispatch:
@@ -15,9 +15,6 @@ jobs:
     with:
       dockerfile_path: ./Dockerfile
       image_name: test
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   update-manifest:
     needs: build-and-publish
@@ -25,5 +22,5 @@ jobs:
     uses: tylerpitcher/workflows/.github/workflows/update.yaml@main
     with:
       yaml_file: manifests/test.yaml
-      image_name: ${{ secrets.DOCKER_USERNAME }}/test
+      image_name: tylerpitcher/test
       image_version: ${{ github.sha }}
