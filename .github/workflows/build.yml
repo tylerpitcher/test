@@ -15,6 +15,9 @@ jobs:
     with:
       dockerfile_path: ./Dockerfile
       image_name: test
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   update-manifest:
     needs: build-and-publish
