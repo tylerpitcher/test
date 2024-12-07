@@ -28,4 +28,4 @@ jobs:
     with:
       yaml_file: manifests/test.yaml
       image_name: tylerpitcher/test
-      image_version: ${{ github.sha | head -c 7 }}
+      image_version: ${{ github.sha }}
