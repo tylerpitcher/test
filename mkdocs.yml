@@ -4,10 +4,16 @@ site_url: https://tylerpitcher.github.io/test/
 
 theme:
   name: material
+  features:
+    - navigation.tabs
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Architecture: architecture.md
-  - API Reference: api-reference.md
-  - Deployment: deployment.md
+  - Guides:
+      - Getting Started: getting-started.md
+      - Deployment: deployment.md
+  - Architecture:
+      - Overview: architecture.md
+  - API:
+      - API Reference: api-reference.md
+
