@@ -1,0 +1,13 @@
+site_name: Test API
+site_description: Documentation for the Test API project
+site_url: https://tylerpitcher.github.io/test/
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Architecture: architecture.md
+  - API Reference: api-reference.md
+  - Deployment: deployment.md
